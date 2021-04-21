@@ -1,5 +1,6 @@
 package aop;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -37,7 +38,7 @@ public class LoggingAspect {
 		 * } }
 		 */
 
-		@Pointcut("execution(* aop..*.get*())")
+		/*@Pointcut("execution(* aop..*.get*())")
 		public void allGetters() {}
 
 		@Pointcut("within(aop.Circle)")
@@ -62,6 +63,16 @@ public class LoggingAspect {
 		 * @Before("allGetters") public void thirdAdviceforAllGetters() {
 		 * System.out.println("third log before method is executed"); }
 		 */
+	@After("allCircleMethods()")
+	public void adviceAfterCircleMethodsComplete()
+	{
+		System.out.println("a circle method is complete");
+	}
+	@Pointcut("execution(* aop..*.get*())")
+	public void allGetters() {}
+
+	@Pointcut("within(aop.Circle)")
+	public void allCircleMethods() {}
 
 
 }

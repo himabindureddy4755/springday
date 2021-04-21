@@ -10,6 +10,7 @@ public class AppMain {
 		System.out.println(shapeService.getTriangle().getName());
 		System.out.println(shapeService.getCircle().getDia());
 		
+		shapeService.getCircle().setName("incircle");
 
 	}
 
