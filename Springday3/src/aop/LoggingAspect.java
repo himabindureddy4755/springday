@@ -1,8 +1,10 @@
 package aop;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -80,10 +82,15 @@ public class LoggingAspect {
 	{
 		System.out.println("a circle method is complete");
 	}*/
-	@AfterReturning(pointcut = "args(name)", returning="returnString")
+	/*@AfterReturning(pointcut = "args(name)", returning="returnString")
 	public void StringArgsMethods(String name ,String returnString)
 	{
 		System.out.println("input string ="+name +"\n output string ="+returnString);
+	}*/
+	@AfterThrowing(pointcut="args(name)",throwing="ex")
+	public void ExceptionAdvice(String name ,RuntimeException ex)
+	{
+		System.out.println("exception being thrown is "+ex);
 	}
 	@Pointcut("execution(* aop..*.get*())")
 	public void allGetters() {}
@@ -93,6 +100,20 @@ public class LoggingAspect {
 
 	@Pointcut("args(name)")
 	public void methodsStringArgs(String name) {}
+	@Around("allGetters()")
+	public void myAroundAdvice(ProceedingJoinPoint pjp)
+	{
+		try {
+			System.out.println("before advice");
+			pjp.proceed();
+			System.out.println("after method returns advice");
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			System.out.println("after throwing");
+			
+		}
+		System.out.println("finally advice");
+	}
 
 	
 	
