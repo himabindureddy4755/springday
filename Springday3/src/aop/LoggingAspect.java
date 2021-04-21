@@ -80,6 +80,11 @@ public class LoggingAspect {
 	{
 		System.out.println("a circle method is complete");
 	}*/
+	@AfterReturning(pointcut = "args(name)", returning="returnString")
+	public void StringArgsMethods(String name ,String returnString)
+	{
+		System.out.println("input string ="+name +"\n output string ="+returnString);
+	}
 	@Pointcut("execution(* aop..*.get*())")
 	public void allGetters() {}
 
