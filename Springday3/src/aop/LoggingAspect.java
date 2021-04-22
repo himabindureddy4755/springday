@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-@Aspect
+
 public class LoggingAspect {
 	//one aspect can contain multiple advices
 
@@ -67,7 +67,7 @@ public class LoggingAspect {
 		 * @Before("allGetters") public void thirdAdviceforAllGetters() {
 		 * System.out.println("third log before method is executed"); }
 		 */
-	@AfterReturning("allCircleMethods())")
+	/*@AfterReturning("allCircleMethods())")
 	public void adviceAfterCircleMethodsComplete()
 	{
 		System.out.println("a circle method is returns");
@@ -88,21 +88,21 @@ public class LoggingAspect {
 		System.out.println("input string ="+name +"\n output string ="+returnString);
 	}*/
 	@AfterThrowing(pointcut="args(name)",throwing="ex")
-	public void ExceptionAdvice(String name ,RuntimeException ex)
+	/*public void ExceptionAdvice(String name ,RuntimeException ex)
 	{
 		System.out.println("exception being thrown is "+ex);
-	}
-	@Pointcut("execution(* aop..*.get*())")
-	public void allGetters() {}
+	}*/
+	/*@Pointcut("execution(* aop..*.get*())")
+	public void allGetters() {}*/
 
-	@Pointcut("within(aop.Circle)")
-	public void allCircleMethods() {}
+	//@Pointcut("within(aop.Circle)")
+	//public void allCircleMethods() {}
 
 	@Pointcut("args(name)")
 	public void methodsStringArgs(String name) {}
 	//@Around("allGetters()")
 	 
-	@Around("@annotation(aop.Loggable)") 
+	//@Around("@annotation(aop.Loggable)") 
 	public void myAroundAdvice(ProceedingJoinPoint pjp) {
 		
 		try {
