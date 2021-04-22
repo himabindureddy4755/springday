@@ -100,20 +100,25 @@ public class LoggingAspect {
 
 	@Pointcut("args(name)")
 	public void methodsStringArgs(String name) {}
-	@Around("allGetters()")
-	public void myAroundAdvice(ProceedingJoinPoint pjp)
-	{
+	//@Around("allGetters()")
+	 
+	@Around("@annotation(aop.Loggable)") 
+	public void myAroundAdvice(ProceedingJoinPoint pjp) {
+		
 		try {
 			System.out.println("before advice");
 			pjp.proceed();
 			System.out.println("after method returns advice");
+
 		} catch (Throwable e) {
-			// TODO Auto-generated catch block
 			System.out.println("after throwing");
-			
-		}
-		System.out.println("finally advice");
+			//e.printStackTrace();
+		} System.out.println("finally advice");
+		
 	}
+	
+
+		
 
 	
 	

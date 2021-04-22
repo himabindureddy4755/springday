@@ -6,8 +6,8 @@ public class Circle {
 // public Circle() {System.out.println("in circle constructor");}
 	
 	public String getName() {
-		//return name;
-		throw new RuntimeException();
+		return name;
+		//throw new RuntimeException();
 	}
 
 	public void setName(String name) {
